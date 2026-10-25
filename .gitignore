@@ -1,0 +1,16 @@
+node_modules/
+dist/**/*.map
+build/
+out/
+.dshx/
+.env
+.env.local
+*.log
+.DS_Store
+.designer/
+test-fixtures/
+*.tsbuildinfo
+preview-screenshot.png
+*.mp4
+lib/*.map
+preview/*.map

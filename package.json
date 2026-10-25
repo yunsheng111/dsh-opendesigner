@@ -1,0 +1,98 @@
+{
+  "name": "dsh-opendesigner",
+  "version": "0.2.0",
+  "description": "DeepSeek Harness plugin: local-first visual React/Tailwind designer with a jailed tool surface.",
+  "type": "module",
+  "main": "./dist/plugin.js",
+  "types": "./dist/plugin.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.js",
+      "default": "./dist/plugin.js"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "import": "./lib/client.js",
+      "default": "./lib/client.js"
+    },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "import": "./dist/server/index.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "preview.html",
+    "preview/app.js",
+    "README.md",
+    "LICENSE",
+    "docs/SHIPPED.md"
+  ],
+  "scripts": {
+    "build": "tsc -b && node scripts/bundle-client.mjs",
+    "dev": "tsc -w",
+    "test": "node --experimental-strip-types --test --test-reporter=spec test/*.ts",
+    "test:review": "REVIEW_SOURCE_ROOT=$PWD/src node --experimental-strip-types --test --test-reporter=spec docs/review-2026-09-07/qa/*.test.mjs",
+    "test:review:pr3": "REVIEW_SOURCE_ROOT=$PWD/src node --experimental-strip-types --test --test-reporter=spec docs/review-pr3/qa/*.test.mjs",
+    "test:review:pr4": "REVIEW_SOURCE_ROOT=$PWD/src node --experimental-strip-types --test --test-reporter=spec docs/review-pr4/qa/*.test.mjs",
+    "test:review:pr4r2": "REVIEW_SOURCE_ROOT=$PWD/src node --experimental-strip-types --test --test-reporter=spec docs/review-pr4-r2/qa/*.test.mjs",
+    "preview": "node --experimental-strip-types scripts/preview-server.mjs"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "visual-editor",
+    "react",
+    "tailwind",
+    "cordis"
+  ],
+  "author": "OpenDesigner Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aa2246740/dsh-opendesigner.git"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "plugin": {
+      "displayName": "OpenDesigner",
+      "summary": {
+        "en": "Jailed local-first visual designer plugin for DeepSeek Harness.",
+        "zh-CN": "DeepSeek Harness 本地优先视觉设计器插件，文件工具限制在工程根目录内。"
+      }
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "@babel/types": "^7.26.0"
+  }
+}
